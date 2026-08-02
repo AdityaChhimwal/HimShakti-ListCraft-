@@ -23,10 +23,6 @@ from fastapi.middleware.cors import CORSMiddleware
 from models.product import Product
 from database import products_collection
 from bson import ObjectId
-<<<<<<< HEAD
-
-=======
->>>>>>> bd449cb871fb2ecce69535a3274deb1ef5de895c
 
 app = FastAPI(title="HimShakti ListCraft API")
 load_dotenv()
@@ -222,7 +218,6 @@ def search_products(q: str):
         del product["_id"]
         products.append(product)
 
-<<<<<<< HEAD
     return products
 
 @app.get("/api/profile")
@@ -263,6 +258,3 @@ Return only the improved marketing description.
             status_code=500,
             detail=str(e)
         )
-=======
-    return products
->>>>>>> bd449cb871fb2ecce69535a3274deb1ef5de895c

@@ -55,7 +55,6 @@ pip install pymongo python-dotenv
 
 ```bash
 uvicorn main:app --reload
-<<<<<<< HEAD
 ```
 
 Logout is implemented client-side by removing the JWT from localStorage.
@@ -67,6 +66,3 @@ Logout is implemented client-side by removing the JWT from localStorage.
 - Prompt-based Marketing Content
 - Environment Variable API Key
 - React Frontend + FastAPI Backend
-=======
-```
->>>>>>> bd449cb871fb2ecce69535a3274deb1ef5de895c
