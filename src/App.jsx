@@ -6,6 +6,7 @@ import About from "./pages/About";
 import Dashboard from "./pages/Dashboard";
 import Login from "./pages/Login";
 import ComponentDemo from "./pages/ComponentDemo";
+import Register from "./pages/Register";
 
 function App() {
   return (
@@ -16,6 +17,8 @@ function App() {
         <Route path="/" element={<Home />} />
 
         <Route path="/about" element={<About />} />
+
+        <Route path="/register" element={<Register />} />
 
        <Route
   path="/dashboard"

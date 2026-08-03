@@ -1,6 +1,6 @@
 import { useState } from "react";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
@@ -17,7 +17,7 @@ function Login() {
     try {
 
       const res = await axios.post(
-        "http://127.0.0.1:8000/api/auth/login",
+        `${import.meta.env.VITE_API_URL}/api/auth/login`,
         {
           email,
           password
@@ -76,6 +76,15 @@ function Login() {
           Login
 
         </button>
+        <p className="mt-6 text-center">
+  Don't have an account?{" "}
+  <Link
+    to="/register"
+    className="text-blue-600 font-semibold hover:underline"
+  >
+    Create Account
+  </Link>
+</p>
 
       </main>
 

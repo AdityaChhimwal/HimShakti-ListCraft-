@@ -27,8 +27,8 @@ function Home() {
 
     try {
       const res = await axios.get(
-        "http://127.0.0.1:8000/api/products"
-      );
+  `${import.meta.env.VITE_API_URL}/api/products`
+);
 
       setProducts(res.data);
     } catch (error) {
@@ -57,8 +57,8 @@ function Home() {
 
     try {
       if (wasEditing) {
-        await axios.put(
-          `http://127.0.0.1:8000/api/products/${editingId}`,
+       await axios.put(
+  `${import.meta.env.VITE_API_URL}/api/products/${editingId}`,
           {
             name,
             description,
@@ -66,8 +66,8 @@ function Home() {
           }
         );
       } else {
-        await axios.post(
-          "http://127.0.0.1:8000/api/products",
+         await axios.post(
+  `${import.meta.env.VITE_API_URL}/api/products`,
           {
             name,
             description,
@@ -96,9 +96,9 @@ function Home() {
     if (!window.confirm("Delete this product?")) return;
 
     try {
-      await axios.delete(
-        `http://127.0.0.1:8000/api/products/${id}`
-      );
+     await axios.delete(
+  `${import.meta.env.VITE_API_URL}/api/products/${id}`
+);
 
       await fetchProducts();
 
@@ -127,60 +127,8 @@ function Home() {
         <section className="max-w-6xl mx-auto px-6 py-12">
 
           <h2 className="text-3xl font-bold text-center mb-10">
-            Products from Backend
+           Featured Products
           </h2>
-
-          <div className="bg-gray-100 dark:bg-gray-800 rounded-lg p-6 mb-8">
-
-            <h3 className="text-xl font-bold mb-4">
-              Product Management
-            </h3>
-
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-
-              <input
-                type="text"
-                placeholder="Product Name"
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-                className="border rounded p-2 text-black"
-              />
-
-              <input
-                type="text"
-                placeholder="Description"
-                value={description}
-                onChange={(e) => setDescription(e.target.value)}
-                className="border rounded p-2 text-black"
-              />
-
-              <input
-                type="text"
-                placeholder="Tone"
-                value={tone}
-                onChange={(e) => setTone(e.target.value)}
-                className="border rounded p-2 text-black"
-              />
-
-            </div>
-
-            <button
-              disabled={saving}
-              onClick={saveProduct}
-              className={`mt-4 px-6 py-2 rounded text-white ${
-                saving
-                  ? "bg-gray-500 cursor-not-allowed"
-                  : "bg-green-700 hover:bg-green-800"
-              }`}
-            >
-              {saving
-                ? "Saving..."
-                : editingId
-                ? "Save Changes"
-                : "Create Product"}
-            </button>
-
-          </div>
 
           {loading ? (
             <Loader />
@@ -211,23 +159,6 @@ function Home() {
                     description={product.description}
                   />
 
-                  <div className="flex gap-2 mt-3">
-
-                    <button
-                      onClick={() => editProduct(product)}
-                      className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded"
-                    >
-                      Update
-                    </button>
-
-                    <button
-                      onClick={() => deleteProduct(product.id)}
-                      className="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded"
-                    >
-                      Delete
-                    </button>
-
-                  </div>
 
                 </div>
 

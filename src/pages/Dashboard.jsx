@@ -5,6 +5,7 @@ import axios from "axios";
 
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
+import { Loader, showToast } from "../components/ui";
 
 function Dashboard() {
   const [user, setUser] = useState(null);
@@ -16,6 +17,7 @@ function Dashboard() {
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
+
 useEffect(() => {
   const token = localStorage.getItem("token");
 
@@ -25,13 +27,12 @@ useEffect(() => {
   }
 
   axios
-    .get("http://127.0.0.1:8000/api/profile", {
+    .get(`${import.meta.env.VITE_API_URL}/api/profile`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
     })
-   .then((res) => {
-  console.log(res.data);
+.then((res) => {
   setUser(res.data);
 })
     .catch(() => {
@@ -40,13 +41,14 @@ useEffect(() => {
     });
 }, [navigate]);
 
+
   const generateDescription = async () => {
     try {
       setLoading(true);
       setResult("");
 
       const response = await axios.post(
-        "http://127.0.0.1:8000/api/ai/generate",
+        `${import.meta.env.VITE_API_URL}/api/ai/generate`,
         {
           product_name: productName,
           description: description,
@@ -57,7 +59,9 @@ useEffect(() => {
       setResult(response.data.generated_text);
     } catch (err) {
     console.log(err.response?.data);
-    alert(err.response?.data?.detail || "Failed to generate description.");
+   showToast(
+  err.response?.data?.detail || "Failed to generate description."
+);
 } finally {
       setLoading(false);
     }
@@ -77,7 +81,7 @@ useEffect(() => {
   {user && (
     <>
       <p className="mt-2">
-        <strong>Email:</strong> {user.email}
+        <strong>Email:</strong> {user?.user?.sub || "User"}
       </p>
 
       <p>
@@ -125,11 +129,7 @@ useEffect(() => {
           Generate with AI
         </button>
 
-        {loading && (
-          <p className="mt-6 font-semibold">
-            Generating...
-          </p>
-        )}
+      {loading && <Loader />}
 
         {result && (
           <div className="mt-8 border rounded p-4">

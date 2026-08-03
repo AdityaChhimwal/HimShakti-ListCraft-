@@ -57,12 +57,21 @@ const logout = () => {
     Logout
   </button>
 ) : (
+<>
   <Link
     to="/login"
     className="hover:text-orange-200"
   >
     Login
   </Link>
+
+  <Link
+    to="/register"
+    className="hover:text-orange-200"
+  >
+    Register
+  </Link>
+</>
 )}
 
           <button
