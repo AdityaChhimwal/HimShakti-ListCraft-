@@ -7,5 +7,5 @@ passlib[bcrypt]
 pymongo
 dnspython
 google-generativeai
-flask-cors
 email-validator
+slowapi
