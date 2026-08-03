@@ -8,3 +8,4 @@ pymongo
 dnspython
 google-generativeai
 flask-cors
+email-validator
