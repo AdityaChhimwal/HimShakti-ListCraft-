@@ -38,14 +38,13 @@ app.add_middleware(SlowAPIMiddleware)
 app.add_middleware(
     CORSMiddleware,
     allow_origins=[
-    "http://localhost:5173",
-    "https://YOUR-VERCEL-URL.vercel.app",
-],
+        "http://localhost:5173",
+        "https://himshakti-listcraft-vercel.vercel.app",
+    ],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
-
 
 products = [
     {
