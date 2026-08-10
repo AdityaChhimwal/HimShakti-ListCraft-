@@ -1,16 +1,79 @@
-# React + Vite
+# HimShakti ListCraft
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+AI-powered product description generator designed to help Himalayan food entrepreneurs create compelling e-commerce product listings quickly.
 
-Currently, two official plugins are available:
+## Live Demo
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+https://himshakti-listcraft-vercel.vercel.app
 
-## React Compiler
+## Demo Video
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+YouTube Unlisted link will be added after recording.
 
-## Expanding the ESLint configuration
+## Screenshots
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+### Home Page
+
+![Home Page](screenshots/home.png)
+
+### Authentication
+
+![Login](screenshots/login.png)
+
+### AI Dashboard
+
+![Dashboard](screenshots/dashboard.png)
+
+### AI Generated Description
+
+![AI Output](screenshots/ai-output.png)
+
+## Features
+
+- User registration and authentication
+- Secure password hashing
+- JWT-based authentication
+- Protected dashboard
+- AI-powered product description generation
+- Multiple writing tones
+- Product management API
+- Product search API
+- Responsive user interface
+- Dark mode
+- RESTful FastAPI backend
+- MongoDB database integration
+
+## Tech Stack
+
+### Frontend
+- React
+- Vite
+- Tailwind CSS
+- React Router
+- Axios
+
+### Backend
+- Python
+- FastAPI
+- Uvicorn
+- JWT authentication
+
+### Database
+- MongoDB
+- PyMongo
+
+### AI
+- Google Gemini API
+
+### Deployment
+- Vercel — Frontend
+- Render — Backend
+- MongoDB Atlas — Database
+
+## Setup Instructions
+
+### 1. Clone the repository
+
+```bash
+git clone YOUR_GITHUB_REPOSITORY_URL
+cd HimShakti-ListCraft
