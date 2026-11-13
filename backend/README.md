@@ -1,68 +1,33 @@
 # HimShakti ListCraft Backend
 
-## Run Locally
+FastAPI service for product listings, registration, JWT login and Gemini-powered product descriptions.
+
+See the [main README](../README.md#run-locally) for the complete setup, environment variables and frontend configuration. Install all dependencies from `requirements.txt` and run these commands from this `backend` directory after activating the virtual environment:
 
 ```bash
-python -m venv venv
-
-source venv/Scripts/activate
-
-pip install fastapi uvicorn python-dotenv
-
-uvicorn main:app --reload
+python -m pip install -r requirements.txt
+python -m uvicorn main:app --reload --host 127.0.0.1 --port 8000
 ```
 
-Backend runs at
+- Local API: [http://127.0.0.1:8000](http://127.0.0.1:8000)
+- Interactive documentation: [http://127.0.0.1:8000/docs](http://127.0.0.1:8000/docs)
+- [Endpoint overview](../README.md#api-overview)
 
-http://127.0.0.1:8000
+## Configuration
 
-Swagger Documentation
+Copy `.env.example` to `.env` in this directory. Set `MONGO_URI`, `JWT_SECRET` and `GEMINI_API_KEY`. Keep credentials out of source control.
 
-http://127.0.0.1:8000/docs
+The database is named `himshakti_listcraft`. The `users` collection stores email addresses and hashed passwords; the `products` collection stores product names, descriptions and writing tones.
 
-## Database
+![Product database schema](W5_SchemaDiagram_TBI-26101125.png)
 
-Database Used: MongoDB Atlas
+## Implementation notes
 
-Reason:
-MongoDB was chosen because the application stores product information in a flexible document-based format, making it easy to extend with AI-generated descriptions and additional metadata.
+- `main.py` defines API routes, CORS and the Gemini prompt.
+- `auth.py` hashes passwords and creates or verifies JWTs.
+- `database.py` connects to MongoDB.
+- `models/` contains request validation models.
+- Logout removes the JWT from browser local storage; it does not revoke an already-issued token.
+- JWT verification protects `/api/profile`. Product and AI generation endpoints do not currently enforce bearer-token authorization or per-user product ownership.
 
-## Database Schema
-
-Product
-
-- _id (ObjectId)
-- name (String)
-- description (String)
-- tone (String)
-## Database Schema
-
-![Database Schema](W5_SchemaDiagram_TBI-26101125.png)
-
-## Database Setup
-
-1. Create a MongoDB Atlas cluster.
-2. Create a database user.
-3. Add your IP to Network Access.
-4. Add MONGO_URI to the .env file.
-5. Install dependencies:
-
-```bash
-pip install pymongo python-dotenv
-```
-
-6. Run:
-
-```bash
-uvicorn main:app --reload
-```
-
-Logout is implemented client-side by removing the JWT from localStorage.
-
- ## AI Features
-
-- Google Gemini API Integration
-- AI Product Description Generator
-- Prompt-based Marketing Content
-- Environment Variable API Key
-- React Frontend + FastAPI Backend
+Gemini generation needs a valid key, available quota and access to the model configured in `main.py`. Generated copy should be reviewed for factual accuracy.
